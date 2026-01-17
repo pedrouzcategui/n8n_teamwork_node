@@ -4,7 +4,7 @@ import { companyDescription } from './resources/company';
 
 export class TeamworkApiNode implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Teamwork Api Node',
+		displayName: 'Teamwork.com Api Node',
 		name: 'teamworkApiNode',
 		icon: { light: 'file:teamworkApiNode.svg', dark: 'file:teamworkApiNode.dark.svg' },
 		group: ['transform'],
