@@ -1,34 +1,34 @@
 import type { INodeProperties } from 'n8n-workflow';
-import { companyGetManyDescription } from './getAll';
+import { tasksGetManyDescription } from './getAll';
 
-const showOnlyForCompanies = {
-	resource: ['company'],
+const showOnlyForTasks = {
+	resource: ['tasks'],
 };
 
-export const companyDescription: INodeProperties[] = [
+export const tasksDescription: INodeProperties[] = [
 	{
 		displayName: 'Operation',
 		name: 'operation',
 		type: 'options',
 		noDataExpression: true,
 		displayOptions: {
-			show: showOnlyForCompanies,
+			show: showOnlyForTasks,
 		},
 		options: [
 			{
 				name: 'Get Many',
 				value: 'getAll',
-				action: 'Get companies',
-				description: 'Get companies',
+				action: 'Get tasks',
+				description: 'Get tasks (supports filtering via query parameters)',
 				routing: {
 					request: {
 						method: 'GET',
-						url: '/companies',
+						url: '/tasks.json',
 					},
 				},
 			},
 		],
 		default: 'getAll',
 	},
-	...companyGetManyDescription,
+	...tasksGetManyDescription,
 ];

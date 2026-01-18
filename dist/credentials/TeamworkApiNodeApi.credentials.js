@@ -3,10 +3,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TeamworkApiNodeApi = void 0;
 class TeamworkApiNodeApi {
     constructor() {
-        this.name = 'teamworkApiNodeApi';
-        this.displayName = 'Teamwork Api Node API';
-        this.documentationUrl = 'https://github.com/org/-teamwork-api-node?tab=readme-ov-file#credentials';
+        this.name = 'teamwork.com_api';
+        this.displayName = 'Teamwork.com Api Node API';
+        this.documentationUrl = 'https://github.com/pedrouzcategui/n8n_teamwork_node#credentials';
         this.properties = [
+            {
+                displayName: 'Subdomain',
+                name: 'subdomain',
+                type: 'string',
+                description: 'Your Teamwork subdomain (e.g., if your URL is https://example.teamwork.com, your subdomain is "example")',
+                default: '',
+            },
             {
                 displayName: 'Username',
                 name: 'username',
@@ -34,7 +41,7 @@ class TeamworkApiNodeApi {
         };
         this.test = {
             request: {
-                baseURL: 'https://example.com.teamwork.com/projects/api/v3',
+                baseURL: `https://{{$credentials.subdomain}}.teamwork.com/projects/api/v3`,
                 url: '/v1/user',
             },
         };

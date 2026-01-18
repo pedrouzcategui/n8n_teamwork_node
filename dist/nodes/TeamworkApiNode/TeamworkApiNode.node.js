@@ -2,27 +2,28 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TeamworkApiNode = void 0;
 const n8n_workflow_1 = require("n8n-workflow");
-const user_1 = require("./resources/user");
-const company_1 = require("./resources/company");
+const tasks_1 = require("./resources/tasks");
+const people_1 = require("./resources/people");
 class TeamworkApiNode {
     constructor() {
         this.description = {
-            displayName: 'Teamwork.com Api Node',
-            name: 'teamworkApiNode',
-            icon: { light: 'file:teamworkApiNode.svg', dark: 'file:teamworkApiNode.dark.svg' },
+            displayName: 'Teamwork.com API',
+            name: 'teamwork_api_node',
+            icon: 'file:teamworkApiNode.svg',
             group: ['transform'],
             version: 1,
             subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-            description: 'Interact with the Teamwork Api Node API',
+            description: 'Non-Official Teamwork.com API Node for n8n',
             defaults: {
-                name: 'Teamwork Api Node',
+                name: 'Teamwork.com',
+                color: '#0b0836',
             },
             usableAsTool: true,
             inputs: [n8n_workflow_1.NodeConnectionTypes.Main],
             outputs: [n8n_workflow_1.NodeConnectionTypes.Main],
-            credentials: [{ name: 'teamworkApiNodeApi', required: true }],
+            credentials: [{ name: 'teamwork.com_api', required: true }],
             requestDefaults: {
-                baseURL: 'https://example.com.teamwork.com/projects/api/v3',
+                baseURL: '=https://{{$credentials.subdomain}}.teamwork.com/projects/api/v3',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
@@ -36,18 +37,18 @@ class TeamworkApiNode {
                     noDataExpression: true,
                     options: [
                         {
-                            name: 'User',
-                            value: 'user',
+                            name: 'People',
+                            value: 'people',
                         },
                         {
-                            name: 'Company',
-                            value: 'company',
+                            name: 'Tasks',
+                            value: 'tasks',
                         },
                     ],
-                    default: 'user',
+                    default: 'tasks',
                 },
-                ...user_1.userDescription,
-                ...company_1.companyDescription,
+                ...people_1.peopleDescription,
+                ...tasks_1.tasksDescription,
             ],
         };
     }

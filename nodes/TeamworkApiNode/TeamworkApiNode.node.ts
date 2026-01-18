@@ -1,25 +1,27 @@
 import { NodeConnectionTypes, type INodeType, type INodeTypeDescription } from 'n8n-workflow';
-import { userDescription } from './resources/user';
-import { companyDescription } from './resources/company';
+import { tasksDescription } from './resources/tasks';
+import { peopleDescription } from './resources/people';
 
 export class TeamworkApiNode implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Teamwork.com Api Node',
-		name: 'teamworkApiNode',
-		icon: { light: 'file:teamworkApiNode.svg', dark: 'file:teamworkApiNode.dark.svg' },
+		displayName: 'Teamwork.com API',
+		name: 'teamwork_api_node',
+		// TODO: include dark mode icon
+		icon: 'file:teamworkApiNode.svg',
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Interact with the Teamwork Api Node API',
+		description: 'Non-Official Teamwork.com API Node for n8n',
 		defaults: {
-			name: 'Teamwork Api Node',
+			name: 'Teamwork.com',
+			color: '#0b0836',
 		},
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
-		credentials: [{ name: 'teamworkApiNodeApi', required: true }],
+		credentials: [{ name: 'teamwork.com_api', required: true }],
 		requestDefaults: {
-			baseURL: 'https://example.com.teamwork.com/projects/api/v3',
+			baseURL: '=https://{{$credentials.subdomain}}.teamwork.com/projects/api/v3',
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
@@ -33,18 +35,18 @@ export class TeamworkApiNode implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
-						name: 'User',
-						value: 'user',
+						name: 'People',
+						value: 'people',
 					},
 					{
-						name: 'Company',
-						value: 'company',
+						name: 'Tasks',
+						value: 'tasks',
 					},
 				],
-				default: 'user',
+				default: 'tasks',
 			},
-			...userDescription,
-			...companyDescription,
+			...peopleDescription,
+			...tasksDescription,
 		],
 	};
 }

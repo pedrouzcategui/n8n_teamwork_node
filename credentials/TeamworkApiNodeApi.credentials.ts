@@ -6,14 +6,22 @@ import type {
 } from 'n8n-workflow';
 
 export class TeamworkApiNodeApi implements ICredentialType {
-	name = 'teamworkApiNodeApi';
+	name = 'teamwork.com_api';
 
-	displayName = 'Teamwork Api Node API';
+	displayName = 'Teamwork.com Api Node API';
 
 	// Link to your community node's README
-	documentationUrl = 'https://github.com/org/-teamwork-api-node?tab=readme-ov-file#credentials';
+	documentationUrl = 'https://github.com/pedrouzcategui/n8n_teamwork_node#credentials';
 
 	properties: INodeProperties[] = [
+		{
+			displayName: 'Subdomain',
+			name: 'subdomain',
+			type: 'string',
+			description:
+				'Your Teamwork subdomain (e.g., if your URL is https://example.teamwork.com, your subdomain is "example")',
+			default: '',
+		},
 		{
 			displayName: 'Username',
 			name: 'username',
@@ -43,7 +51,7 @@ export class TeamworkApiNodeApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: 'https://example.com.teamwork.com/projects/api/v3',
+			baseURL: `https://{{$credentials.subdomain}}.teamwork.com/projects/api/v3`,
 			url: '/v1/user',
 		},
 	};
