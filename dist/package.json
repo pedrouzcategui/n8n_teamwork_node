@@ -4,14 +4,20 @@
     "description": "",
     "license": "MIT",
     "homepage": "",
-    "keywords": ["n8n-community-node-package"],
-    "author": { "name": "Pedro", "email": "pedrouzcategui0103@gmail.com" },
+    "keywords": [
+        "n8n-community-node-package"
+    ],
+    "author": {
+        "name": "Pedro",
+        "email": "pedrouzcategui0103@gmail.com"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/<...>/n8n-nodes-<...>.git"
     },
     "scripts": {
         "build": "n8n-node build",
+        "dev:reset": "npm run build && npm run dev",
         "build:watch": "tsc --watch",
         "dev": "n8n-node dev",
         "lint": "n8n-node lint",
@@ -19,12 +25,18 @@
         "release": "n8n-node release",
         "prepublishOnly": "n8n-node prerelease"
     },
-    "files": ["dist"],
+    "files": [
+        "dist"
+    ],
     "n8n": {
         "n8nNodesApiVersion": 1,
         "strict": true,
-        "credentials": ["dist/credentials/TeamworkApiNodeApi.credentials.js"],
-        "nodes": ["dist/nodes/TeamworkApiNode/TeamworkApiNode.node.js"]
+        "credentials": [
+            "dist/credentials/TeamworkApiNodeApi.credentials.js"
+        ],
+        "nodes": [
+            "dist/nodes/TeamworkApiNode/TeamworkApiNode.node.js"
+        ]
     },
     "devDependencies": {
         "@n8n/node-cli": "*",
@@ -33,5 +45,7 @@
         "release-it": "^19.0.4",
         "typescript": "5.9.2"
     },
-    "peerDependencies": { "n8n-workflow": "*" }
+    "peerDependencies": {
+        "n8n-workflow": "*"
+    }
 }

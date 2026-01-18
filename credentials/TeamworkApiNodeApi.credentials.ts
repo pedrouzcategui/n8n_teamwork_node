@@ -37,14 +37,21 @@ export class TeamworkApiNodeApi implements ICredentialType {
 			},
 			default: '',
 		},
+		{
+			displayName: 'API Key',
+			name: 'apiKey',
+			type: 'string',
+			description: 'Your Teamwork API Key (if you prefer using API Key over username)',
+			default: '',
+		},
 	];
 
 	authenticate: IAuthenticateGeneric = {
 		type: 'generic',
 		properties: {
-			auth: {
-				username: '={{$credentials.username}}',
-				password: '={{$credentials.password}}',
+			headers: {
+				Authorization:
+					'=IF($credentials.apiKey != "", "Basic " + BINARY_TO_BASE64($credentials.apiKey + ":x"), "Basic " + BINARY_TO_BASE64($credentials.username + ":" + $credentials.password))',
 			},
 		},
 	};

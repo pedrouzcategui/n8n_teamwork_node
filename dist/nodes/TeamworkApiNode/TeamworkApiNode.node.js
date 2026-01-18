@@ -3,11 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TeamworkApiNode = void 0;
 const n8n_workflow_1 = require("n8n-workflow");
 const tasks_1 = require("./resources/tasks");
-const people_1 = require("./resources/people");
 class TeamworkApiNode {
     constructor() {
         this.description = {
-            displayName: 'Teamwork.com API',
+            displayName: 'Teamwork.com API (For Chase & Team @ Focus Digital!)',
             name: 'teamwork_api_node',
             icon: 'file:teamworkApiNode.svg',
             group: ['transform'],
@@ -37,17 +36,12 @@ class TeamworkApiNode {
                     noDataExpression: true,
                     options: [
                         {
-                            name: 'People',
-                            value: 'people',
-                        },
-                        {
                             name: 'Tasks',
                             value: 'tasks',
                         },
                     ],
                     default: 'tasks',
                 },
-                ...people_1.peopleDescription,
                 ...tasks_1.tasksDescription,
             ],
         };

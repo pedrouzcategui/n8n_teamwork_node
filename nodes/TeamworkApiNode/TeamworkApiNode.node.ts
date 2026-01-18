@@ -1,10 +1,9 @@
 import { NodeConnectionTypes, type INodeType, type INodeTypeDescription } from 'n8n-workflow';
 import { tasksDescription } from './resources/tasks';
-import { peopleDescription } from './resources/people';
 
 export class TeamworkApiNode implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Teamwork.com API',
+		displayName: 'Teamwork.com API (For Chase & Team @ Focus Digital!)',
 		name: 'teamwork_api_node',
 		// TODO: include dark mode icon
 		icon: 'file:teamworkApiNode.svg',
@@ -35,17 +34,13 @@ export class TeamworkApiNode implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
-						name: 'People',
-						value: 'people',
-					},
-					{
 						name: 'Tasks',
 						value: 'tasks',
 					},
 				],
 				default: 'tasks',
 			},
-			...peopleDescription,
+			// Tasks Resource + Operations
 			...tasksDescription,
 		],
 	};
